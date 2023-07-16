@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  borrowing_date: 2023-07-12
+  due_date: 2023-07-12
+  user: one
+  book: one
+
+two:
+  borrowing_date: 2023-07-12
+  due_date: 2023-07-12
+  user: two
+  book: two

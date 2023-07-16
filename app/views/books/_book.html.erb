@@ -1,0 +1,39 @@
+<div id="<%= dom_id book %>">
+  <p>
+    <strong>Title:</strong>
+    <%= book.title %>
+  </p>
+  <p>
+    <strong>Author:</strong>
+    <%= book.author %>
+  </p>
+  <p>
+    <strong>Image url:</strong>
+    <%= book.image_url %>
+  </p>
+  <p>
+    <strong>Category:</strong>
+    <%= book.category_id %>
+  </p>
+  <% if book.borrowings.exists? && book.reservations.exists? %>
+    <% if book.reservations.exists?(user_id: current_user.id) %>
+      <p>You reserved this book</p>
+    <% elsif book.borrowings.exists?(user_id: current_user.id) %>
+      <p>You borrowed this book</p>
+    <% else %>
+      <p>Book is not available</p>
+    <% end %>
+  <% elsif book.borrowings.exists? %>
+    <% if book.borrowings.exists?(user_id: current_user.id) %>
+      <p>You borrowed this book</p>
+    <% else %>
+      <p>
+        <%= link_to "Reserve this book", new_reservation_path(book_id: book.id) %>
+      </p>
+    <% end %>
+  <% else %>
+    <p>
+      <%= link_to "Borrow this book", new_borrowing_path(book_id: book.id) %>
+    </p>
+  <% end %>
+</div>
