@@ -1,0 +1,84 @@
+<div class='flex justify-center'>
+  <nav class="container bg-white border-gray-200 dark:bg-gray-900 ">
+    <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+      <div class=" flex items-center">
+        <%= image_tag('book.png', class:'h-10 mr-3', alt:"logo") %>
+        <span class='font-serif font-semibold text-lg text-textColor mt-1' >ShelfWise</span>
+      </div>
+      <div class="flex items-center md:order-2">
+        <% if user_signed_in? %>
+          <button type="button" class="flex mr-3 text-sm rounded-full md:mr-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600" id="user-menu-button" aria-expanded="false" data-dropdown-toggle="user-dropdown" data-dropdown-placement="bottom">
+            <span class="sr-only">Open user menu</span>
+            <%= image_tag('profile.png',class:'w-8 h-8 rounded-full', alt:"user photo") %>
+          </button>
+        <% else %>
+          <%= link_to 'Sign In' , new_user_session_path, class:'mr-3' %>
+        <% end %>
+        <!-- Dropdown menu -->
+        <% if user_signed_in? %>
+          <div class="z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600" id="user-dropdown">
+            <div class="px-4 py-3">
+              <span class="block text-sm text-gray-900 dark:text-white"><%= current_user.username %></span>
+              <span class="block text-sm  text-gray-500 truncate dark:text-gray-400"><%= current_user.email %></span>
+            </div>
+            <ul class="py-2" aria-labelledby="user-menu-button">
+              <li>
+                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Dashboard</a>
+              </li>
+              <li>
+                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Settings</a>
+              </li>
+              <li>
+                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Earnings</a>
+              </li>
+              <li>
+                <%= button_to 'Sign Out', destroy_user_session_path, method: :delete, class:"block text-left px-4 w-full py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white" %>
+              </li>
+            </ul>
+          </div>
+        <% end %>
+        <button data-collapse-toggle="navbar-user" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-user" aria-expanded="false">
+          <span class="sr-only">Open main menu</span>
+          <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15"/>
+          </svg>
+        </button>
+      </div>
+      <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-user">
+        <ul class="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+          <li>
+            <%= link_to 'All Books', books_path , class:'block font-san-serif  py-2 pl-3 pr-4 text-textColor  rounded md:bg-transparent  md:p-0 md:dark:text-blue-500' %>
+          </li>
+          <li>
+            <%= link_to 'Available books', books_path , class:'block font-sans  py-2 pl-3 pr-4 text-textColor  rounded md:bg-transparent  md:p-0 md:dark:text-blue-500' %>
+          </li>
+          <li>
+            <%= link_to 'Categories', categories_path , class:'block font-sans  py-2 pl-3 pr-4 text-textColor  rounded md:bg-transparent  md:p-0 md:dark:text-blue-500' %>
+          </li>
+          <li>
+            <button id="dropdownDefaultButton" data-dropdown-toggle="dropdown" class="text-textColor flex items-center font-sans  py-2 pl-3 pr-4   rounded md:bg-transparent  md:p-0 md:dark:text-blue-500  " type="button">Our policies<svg class="w-2.5 h-2.5 ml-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
+              </svg></button>
+            <!-- Dropdown menu -->
+            <div id="dropdown" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
+              <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefaultButton">
+                <li>
+                  <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Borrowing</a>
+                </li>
+                <li>
+                  <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Reservation</a>
+                </li>
+                <li>
+                  <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Earnings</a>
+                </li>
+                <li>
+                  <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Sign out</a>
+                </li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</div>
