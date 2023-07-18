@@ -25,15 +25,15 @@ class ReservationsController < ApplicationController
     reservation = Reservation.new(reservation_params)
     reservation.user = current_user
     if Reservation.where(book_id: reservation.book_id, user_id: reservation.user_id).exists?
-      return redirect_to books_path, notice: 'You have already reserved this book.'
+      return redirect_to books_path, notice: 'already reserved this book.'
     end
     if Reservation.where(user_id: reservation.user_id).count >= 3
-      return redirect_to books_path, notice: 'You have already three books'
+      return redirect_to books_path, notice: 'already three books'
     end
 
     if reservation.save
-      return redirect_to reservation_url(reservation),
-                         notice: 'Reservation was successfully created.'
+      return redirect_to books_path,
+                         notice: 'created this Reservation successfully .'
     end
 
     render('new', status: 422)
@@ -43,7 +43,7 @@ class ReservationsController < ApplicationController
   def update
     respond_to do |format|
       if @reservation.update(reservation_params)
-        format.html { redirect_to reservation_url(@reservation), notice: 'Reservation was successfully updated.' }
+        format.html { redirect_to reservation_url(@reservation), notice: 'updated this  Reservation successfully .' }
         format.json { render :show, status: :ok, location: @reservation }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -57,7 +57,7 @@ class ReservationsController < ApplicationController
     @reservation.destroy
 
     respond_to do |format|
-      format.html { redirect_to reservations_url, notice: 'Reservation was successfully destroyed.' }
+      format.html { redirect_to reservations_url, notice: 'destroyed the Reservation  successfully .' }
       format.json { head :no_content }
     end
   end

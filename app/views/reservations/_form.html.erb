@@ -1,23 +1,21 @@
-<%= form_with(model: reservation) do |form| %>
-  <% if reservation.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(reservation.errors.count, "error") %> prohibited this reservation from being saved:</h2>
-      <ul>
-        <% reservation.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
+<section class="bg-gray-50 dark:bg-gray-900">
+  <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
+    <a href="#" class="flex items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-white">
+      <%= image_tag('book.png', class: 'h-8 w-8 mr-2', alt: 'logo') %>
+      ShelfWise
+    </a>
+    <div class="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
+      <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
+        <h1 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
+          Select Reservation Date
+        </h1>
+        <%= form_with(model: reservation, class: 'space-y-4 md:space-y-6') do |form| %>
+          <%= form.label :reservation_date, class: 'block mb-2 text-sm font-medium text-gray-900 dark:text-white' %>
+          <%= form.date_field :reservation_date,min: @available_date, required: true, class:'bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500', required: true %>
+          <%= form.hidden_field :book_id, value: @book.id %>
+          <%= form.submit "Reserve this Book",class:"w-full cursor-pointer mt-5 text-white bg-blue-700  hover:bg-blue-800  focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800" %>
+        <%end %>
+      </div>
     </div>
-  <% end %>
-  <div>
-    <%= form.label :reservation_date, style: "display: block" %>
-    <%= form.date_field :reservation_date,min: @available_date, required: true %>
   </div>
-  <div>
-    <%= form.label :book_id, style: "display: block" %>
-    <%= form.hidden_field :book_id, value:@book.id %>
-  </div>
-  <div>
-    <%= form.submit %>
-  </div>
-<% end %>
+</section>
