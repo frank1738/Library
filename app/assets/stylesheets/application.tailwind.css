@@ -43,7 +43,7 @@
 .button {
   border: 1px solid #e1c7a2;
   color: #986c41;
-  transition: all 0.3s ease-in-out;
+  transition: all 0.1s ease-in-out;
 }
 
 .button:hover {
@@ -64,4 +64,27 @@
 
 li {
   list-style: none;
+}
+
+body {
+  background-color: #f9fafb;
+}
+
+.lib {
+  background-color: rgba(0, 0, 0, 0.5);
+  background-image: url('assets/lib.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  background-blend-mode: multiply;
+}
+
+.img {
+  height: 13rem;
+}
+
+.category {
+  background-color: rgba(0, 0, 0, 0.8);
+  background-repeat: no-repeat;
+  background-blend-mode: multiply;
 }

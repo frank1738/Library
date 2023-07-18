@@ -27,7 +27,7 @@
 <section class='flex flex-col justify-center  items-center'>
   <%= form_with(url: books_path, method: "GET", class: 'pb-20 w-1/2 flex justify-center' , data: { controller: "form-submission", turbo_frame: "books", turbo_action: "advance" }) do |form| %>
     <div class='flex w-full items-center gap-2 justify-center'>
-      <%= form.text_field :query, placeholder: "Search Titles, Author", data: { action: "input->form-submission#search" }, class: ' md:w-1/2 border-none text-textColor text-sm input rounded-full font-sans input py-2.5 px-8' %>
+      <%= form.text_field :query, placeholder: "Search Titles, Author", data: { action: "input->form-submission#search" }, class: ' border-bodyColor bg-transparent md:w-1/2 text-textColor text-sm input rounded-full font-sans input py-2.5 px-8' %>
       <i class="uil uil-search text-2xl cursor-pointer unlike "></i>
     </div>
   <% end %>

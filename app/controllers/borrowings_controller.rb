@@ -16,6 +16,8 @@ class BorrowingsController < ApplicationController
     @book = Book.find(params[:book_id])
   end
 
+  def blog; end
+
   # GET /borrowings/1/edit
   def edit; end
 
