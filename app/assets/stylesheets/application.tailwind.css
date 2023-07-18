@@ -20,6 +20,48 @@
   box-sizing: border-box;
 }
 
+.books-section {
+  background-color: linear-gradient(to right, #beaf98, #f2ebe3);
+}
+
 .hero {
   height: 90vh;
+}
+
+.book {
+  box-shadow: 5px 5px rgba(0, 0, 0, 0.3), -5px -5px 5px rgba(255, 255, 255, 0.1);
+}
+
+.box {
+  border: 1px solid grey;
+}
+
+.like {
+  color: #986c41;
+}
+
+.button {
+  border: 1px solid #e1c7a2;
+  color: #986c41;
+  transition: all 0.3s ease-in-out;
+}
+
+.button:hover {
+  background-color: #e1c7a2;
+}
+
+.borrowed {
+  color: #986c41;
+}
+
+.unlike {
+  color: lightgrey;
+}
+
+.alert-bg {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+li {
+  list-style: none;
 }

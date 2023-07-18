@@ -25,14 +25,14 @@ class BorrowingsController < ApplicationController
     borrowing.user = current_user
 
     if Borrowing.where(book_id: borrowing.book_id, user_id: borrowing.user_id).exists?
-      return redirect_to books_path, notice: 'You have already Borrowed this book.'
+      return redirect_to books_path, notice: 'Already Borrowed this book.'
     end
 
     if Borrowing.where(user_id: borrowing.user_id).count >= 3
-      return redirect_to books_path, notice: 'You have already Borrowed three books.'
+      return redirect_to books_path, notice: ' Already Borrowed three books.'
     end
 
-    return redirect_to borrowing_url(borrowing), notice: 'Book successifuly borrowed' if borrowing.save
+    return redirect_to books_path, notice: 'Borrowed the Book successifuly' if borrowing.save
 
     render('new', status: 422)
   end
@@ -41,7 +41,7 @@ class BorrowingsController < ApplicationController
   def update
     respond_to do |format|
       if @borrowing.update(borrowing_params)
-        format.html { redirect_to borrowing_url(@borrowing), notice: 'Borrowing was successfully updated.' }
+        format.html { redirect_to borrowing_url(@borrowing), notice: 'Updated your details successfully.' }
         format.json { render :show, status: :ok, location: @borrowing }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -55,7 +55,7 @@ class BorrowingsController < ApplicationController
     @borrowing.destroy
 
     respond_to do |format|
-      format.html { redirect_to borrowings_url, notice: 'Borrowing was successfully destroyed.' }
+      format.html { redirect_to borrowings_url, notice: 'Updated your details successfully' }
       format.json { head :no_content }
     end
   end

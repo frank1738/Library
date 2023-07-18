@@ -3,6 +3,10 @@
   <head>
     <title>Library</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
+     <link
+      rel="stylesheet"
+      href="https://unicons.iconscout.com/release/v4.0.0/css/line.css"
+    />
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag "tailwind",  "data-turbo-track": "reload" %>
@@ -10,13 +14,14 @@
     <%= javascript_importmap_tags %>
   </head>
   <body>
-    <main class="">
+    <main class=" bg-gray-50">
       <%= render 'layouts/navigation'%>
       <% if notice %>
         <%= render 'layouts/alert' %>
       <% end %>
       <%= yield %>
     </main>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.7.0/flowbite.turbo.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.7.0/flowbite.min.js"></script>
   </body>
