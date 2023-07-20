@@ -43,7 +43,7 @@ class BorrowingsController < ApplicationController
   def update
     respond_to do |format|
       if @borrowing.update(borrowing_params)
-        format.html { redirect_to borrowing_url(@borrowing), notice: 'Updated your details successfully.' }
+        format.html { redirect_to borrowings_path, notice: 'Updated your details successfully.' }
         format.json { render :show, status: :ok, location: @borrowing }
       else
         format.html { render :edit, status: :unprocessable_entity }

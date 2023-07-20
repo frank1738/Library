@@ -1,8 +1,23 @@
-<%= turbo_frame_tag 'books' do %>
-  <%= render @book %>
-  <div>
-    <%= link_to "Edit this book", edit_book_path(@book) %> |
-    <%= link_to "Back to books", books_path %>
-    <%= button_to "Destroy this book", @book, method: :delete %>
-  </div>
-<% end %>
+<section class='flex justify-center items-center h-screen'>
+  <div class=" max-w-sm mt-10 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+    <div>
+      <img class="p-8 rounded-t-lg" src="<%= @book.image_url %>" alt="product image" />
+    </div>
+    <div class="px-5 pb-5">
+      <div>
+        <h3 class='font-serif text-sm font-semibold mt-2'> <%= @book.title %></h3>
+        <h4 class='font-sans text-xs mt-2'> <%= @book.author %></h4>
+      </div>
+      <div class="flex items-center mt-2.5 mb-5">
+        <i class="uil uil-favorite like"></i>
+        <i class="uil uil-favorite like"></i>
+        <i class="uil uil-favorite like"></i>
+        <i class="uil uil-favorite like"></i>
+        <i class="uil uil-favorite unlike"></i>
+      </div>
+      <div class="flex items-center justify-between">
+        <%= link_to "Edit this book", edit_book_path(@book),class:"text-white button focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" %>
+        <%= button_to "Destroy this book", book_path(@book), data: { confirm: "Are you sure?" }, method: :delete, class:"text-white button focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" %>
+      </div>
+    </div>
+  </section>

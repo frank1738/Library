@@ -1,17 +1,15 @@
 <div id="<%= dom_id reservation %>">
+  <p><%= render 'books/book', book:reservation.book %></p>
   <p>
     <strong>Reservation date:</strong>
     <%= reservation.reservation_date %>
   </p>
-
   <p>
     <strong>User:</strong>
     <%= reservation.user_id %>
   </p>
-
   <p>
     <strong>Book:</strong>
     <%= reservation.book_id %>
   </p>
-
 </div>
