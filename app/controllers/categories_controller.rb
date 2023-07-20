@@ -8,7 +8,10 @@ class CategoriesController < ApplicationController
   end
 
   # GET /categories/1 or /categories/1.json
-  def show; end
+  def show
+    @category = Category.find(params[:id])
+    @books = @category.books
+  end
 
   # GET /categories/new
   def new
@@ -24,7 +27,7 @@ class CategoriesController < ApplicationController
 
     respond_to do |format|
       if @category.save
-        format.html { redirect_to category_url(@category), notice: 'created the Category successfully' }
+        format.html { redirect_to categories_path, notice: 'created the Category successfully' }
         format.json { render :show, status: :created, location: @category }
       else
         format.html { render :new, status: :unprocessable_entity }

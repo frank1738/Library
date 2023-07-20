@@ -1,0 +1,19 @@
+<div class='flex id="<%= dom_id book %> '>
+  <img class="h-4/5 book w-2/5" src="<%= book.image_url %>" alt="book">
+  <div class='h-4/5 w-2/5 ml-4 flex flex-col justify-center'>
+    <div>
+      <i class="uil uil-favorite like"></i>
+      <i class="uil uil-favorite like"></i>
+      <i class="uil uil-favorite like"></i>
+      <i class="uil uil-favorite like"></i>
+      <i class="uil uil-favorite unlike"></i>
+    </div>
+    <h3 class='font-serif text-sm font-semibold mt-2'> <%= book.title %></h3>
+    <h4 class='font-sans text-xs mt-2'> <%= book.author %></h4>
+    <p class='font-sans text-xs mt-2 borrowed'>You reserved this book <i class="uil uil-shield-check text-base"></i></p>
+    <div class='flex gap-3 mt-2'>
+      <%= link_to 'Edit',edit_reservation_path(id:reservation.id), class:'button text-xs  p-1' %>
+      <%= button_to 'delete', reservation_path(id: reservation.id), method: :delete, class: 'button text-xs p-1' %>
+    </div>
+  </div>
+</div>

@@ -1,14 +1,24 @@
-<p style="color: green"><%= notice %></p>
-
-<h1>Borrowings</h1>
-
-<div id="borrowings">
-  <% @borrowings.each do |borrowing| %>
-    <%= render borrowing %>
-    <p>
-      <%= link_to "Show this borrowing", borrowing %>
-    </p>
-  <% end %>
+<div class="flex items-center space-x-4">
+  <div class="w-full">
+    <h1 class='mt-6 text-center text-gray-700 font-serif mb-16 text-5xl  md:text-6xl xl:text-7xl'>My <br/>
+      Borrowings</h1>
+  </div>
 </div>
-
-<%= link_to "New borrowing", new_borrowing_path %>
+<section class='flex justify-center p-5'>
+  <div id="reservations" class=' container grid md:grid-cols-3 gap-4'>
+    <% current_user.borrowings.each do |borrowing| %>
+      <%= render 'book', book:borrowing.book,borrowing:borrowing %>
+    <% end %>
+  </div>
+</section>
+<% if current_user.borrowings.length === 0 %>
+  <div class="flex justify-center p-4 mb-4 text-sm text-textColor rounded-lg bg-lightBg dark:bg-gray-800 dark:text-blue-400" role="alert">
+    <svg class="flex-shrink-0 inline w-4 h-4 mr-3 mt-[2px]" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+      <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
+    </svg>
+    <span class="sr-only">Info</span>
+    <div>
+      <span class="font-medium">You have not Borrowed any book yet</span>
+    </div>
+  </div>
+<% end %>

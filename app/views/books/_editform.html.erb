@@ -7,7 +7,7 @@
     <div class="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
       <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
         <h1 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
-          Create a book
+          Edit this book
         </h1>
         <%= form_with(model: book,class: 'space-y-4 md:space-y-6') do |f| %>
           <div>
@@ -27,7 +27,7 @@
             <%= f.select :category_id, Category.all.map { |category| [category.name, category.id] }, { required: true }, class: 'block border-gray-300  w-full p-2.5 mt-2 bg-white border rounded-lg shadow-sm focus:outline-none focus:ring focus:border-blue-300' %>
           </div>
           <div class='mt-5'>
-            <%= f.submit "Create a book", class:"w-full cursor-pointer mt-5 text-white bg-blue-700  hover:bg-blue-800  focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800" %>
+            <%= f.submit "Edit this book", class:"w-full cursor-pointer mt-5 text-white bg-blue-700  hover:bg-blue-800  focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800" %>
           </div>
         <% end %>
       </div>

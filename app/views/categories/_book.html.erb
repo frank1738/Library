@@ -1,0 +1,34 @@
+<div class='flex id="<%= dom_id book %> '>
+  <img class="h-4/5 book w-2/5" src="<%= book.image_url %>" alt="book">
+  <div class='h-4/5 w-2/5 ml-4 flex flex-col justify-center'>
+    <div>
+      <i class="uil uil-favorite like"></i>
+      <i class="uil uil-favorite like"></i>
+      <i class="uil uil-favorite like"></i>
+      <i class="uil uil-favorite like"></i>
+      <i class="uil uil-favorite unlike"></i>
+    </div>
+    <h3 class='font-serif text-sm font-semibold mt-2'> <%= book.title %></h3>
+    <h4 class='font-sans text-xs mt-2'> <%= book.author %></h4>
+    <% if book.borrowings.exists? && book.reservations.exists? %>
+      <% if book.reservations.exists?(user_id: current_user.id) %>
+        <p class='font-sans text-xs mt-2 borrowed'>You reserved this book <i class="uil uil-shield-check text-base"></i></p>
+      <% elsif book.borrowings.exists?(user_id: current_user.id) %>
+        <p class='font-sans text-xs mt-2 borrowed'>You borrowed this book <i class="uil uil-shield-check text-base"></i></p>
+      <% else %>
+        <p class='font-sans text-xs mt-2 borrowed'>This book is not available <i class="uil uil-exclamation-octagon text-base"></i></p>
+      <% end %>
+    <% elsif book.borrowings.exists? %>
+      <% if book.borrowings.exists?(user_id: current_user.id) %>
+        <p class='font-sans text-xs mt-2 borrowed'>You borrowed this book  <i class="uil uil-shield-check text-base"></i></p>
+      <% else %>
+        <%= link_to "Reserve", new_reservation_path(book_id: book.id),  data: { turbo_frame: "_top" }, class:"text-textColor mt-3   shadow-lg dark:shadow-lg  font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 button" %>
+      <% end %>
+    <% else %>
+      <%= link_to new_borrowing_path(book_id: book.id), class: "text-textColor mt-3 shadow-lg dark:shadow-lg font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 button",
+            data: { turbo_frame: "_top" } do %>
+        Borrow
+      <% end %>
+    <% end %>
+  </div>
+</div>
