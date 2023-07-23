@@ -15,8 +15,12 @@
             <h5 class="mb-1 text-xl font-medium text-gray-900 dark:text-white"><%= current_user.username%></h5>
             <span class="text-sm text-gray-500 dark:text-gray-400"><%= current_user.email%></span>
             <div class="flex mt-4 space-x-3 md:mt-6">
-              <%= link_to 'My books' , borrowings_path, class:"inline-flex items-center px-4 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" %>
-              <%= link_to 'My Reservations' , reservations_path,class:"inline-flex items-center px-4 py-2 text-sm font-medium text-center text-gray-900 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-700 dark:focus:ring-gray-700" %>
+              <% if current_user.admin? %>
+                <%= link_to 'Users' , users_path, class:"inline-flex items-center px-4 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" %>
+              <% else %>
+                <%= link_to 'My books' , borrowings_path, class:"inline-flex items-center px-4 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" %>
+                <%= link_to 'My Reservations' , reservations_path,class:"inline-flex items-center px-4 py-2 text-sm font-medium text-center text-gray-900 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-700 dark:focus:ring-gray-700" %>
+              <%end%>
             </div>
           </div>
         </div>
@@ -49,10 +53,12 @@
           </div>
           <%= f.submit "Update", class:"w-full cursor-pointer mt-5 text-white bg-blue-700  hover:bg-blue-800  focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800" %>
         <% end %>
-        <div class='mt-5 flex items-center'>
-          <p class="text-red-500 font-bold mr-2">Unhappy? </p>
-          <%= button_to "Cancel my account", registration_path(resource_name), class: "bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded", data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete %>
-        </div>
+        <% if !current_user.admin? %>
+          <div class='mt-5 flex items-center'>
+            <p class="text-red-500 font-bold mr-2">Unhappy? </p>
+            <%= button_to "Cancel my account", registration_path(resource_name), class: "bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded", data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete %>
+          </div>
+        <% end %>
       </div>
     </div>
   </div>

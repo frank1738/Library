@@ -8,5 +8,5 @@ Rails.application.routes.draw do
   root 'home#index'
   get 'borrow', to: 'home#borrow'
   get 'reserve', to: 'home#reserve'
-  get 'users', to: 'users#index'
+  resources :users, only: %i[index destroy]
 end

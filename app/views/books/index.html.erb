@@ -23,6 +23,9 @@
   </div>
 </section>
 <section class='flex flex-col justify-center  items-center'>
+  <% if current_user.admin? %>
+    <%= link_to "Create a New Book", new_book_path, class:"text-textColor mb-11 shadow-lg dark:shadow-lg  font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 button" %>
+  <% end %>
   <%= form_with(url: books_path, method: "GET", class: 'pb-20 w-1/2 flex justify-center' , data: { controller: "form-submission", turbo_frame: "books", turbo_action: "advance" }) do |form| %>
     <div class='flex w-full items-center gap-2 justify-center'>
       <%= form.text_field :query, placeholder: "Search Titles, Author", data: { action: "input->form-submission#search" }, class: ' border-bodyColor bg-transparent md:w-1/2 text-textColor text-sm input rounded-full font-sans input py-2.5 px-8' %>

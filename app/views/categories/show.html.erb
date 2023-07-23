@@ -24,6 +24,12 @@
   </div>
   <!-- Background image -->
 </section>
-<section  class='flex justify-center'>
+<section  class='flex flex-col justify-center items-center'>
+  <% if current_user.admin? %>
+    <div class='flex'>
+      <%= link_to "Edit this Category", edit_category_path(@category), class:"text-textColor mb-11 shadow-lg dark:shadow-lg  font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 button" %>
+      <%= button_to "Destroy this category", @category,class:"text-textColor mb-11 shadow-lg dark:shadow-lg  font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 button", method: :delete %>
+    </div>
+  <% end %>
   <%= render 'books/books' %>
 </section>

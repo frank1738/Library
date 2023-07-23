@@ -19,15 +19,21 @@ class BooksController < ApplicationController
   end
 
   # GET /books/1 or /books/1.json
-  def show; end
+  def show
+    authorize! :read, @book
+  end
 
   # GET /books/new
   def new
     @book = Book.new
+    authorize! :create, @book
   end
 
   # GET /books/1/edit
-  def edit; end
+  def edit
+    @book = Book.find(params[:id])
+    authorize! :update, @book
+  end
 
   # POST /books or /books.json
   def create
@@ -59,6 +65,7 @@ class BooksController < ApplicationController
 
   # DELETE /books/1 or /books/1.json
   def destroy
+    authorize! :destroy, @book
     @book.destroy
 
     respond_to do |format|

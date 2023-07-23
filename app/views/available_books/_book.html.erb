@@ -10,9 +10,13 @@
     </div>
     <h3 class='font-serif text-sm font-semibold mt-2'> <%= book.title %></h3>
     <h4 class='font-sans text-xs mt-2'> <%= book.author %></h4>
-    <%= link_to new_borrowing_path(book_id: book.id), class: "text-textColor mt-3 shadow-lg dark:shadow-lg font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 button",
+    <%if current_user.admin? %>
+      <%= link_to "view", book,  data: { turbo_frame: "_top" }, class:"text-textColor mt-3   shadow-lg dark:shadow-lg  font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 button" %>
+    <% else %>
+      <%= link_to new_borrowing_path(book_id: book.id), class: "text-textColor mt-3 shadow-lg dark:shadow-lg font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 button",
             data: { turbo_frame: "_top" } do %>
-      Borrow
+        Borrow
+      <% end %>
     <% end %>
   </div>
 </div>
